@@ -5,34 +5,47 @@ echo "Welcome To Snake And Ladder Game."
 STARTPOSITION=0
 WINPOSITION=100
 
-#Varriables Declared.
+#Variables declared.
 position=0
+position=$currentPosition
+
+#Logic for the program.
 while [[ $position -ne $WINPOSITION ]]
 do
-	#CHECKS THE NUMBER BETWEEN 1-6
 	randomRoll=$((RANDOM%6+1))
 	randomOption=$((RANDOM%3))
 	NOPLAY=0
 	LADDER=1
 	SNAKE=2
-
-	#SWITCH CASE FOR RANDOM OPTION
+	#CASE STATEMENTS FOR CHECKING CONDITION
 	case $randomOption in
 		$NOPLAY)
 			position=$position
 			echo "No play for the user"
 		;;
 		$LADDER)
-			position=$(($positon+$randomRoll))
-			echo "Position of a user is $position"
+			position=$(($position+$randomRoll))
+			if [ $position -gt $WINPOSITION ]
+			then
+				position=$currentPosition
+			fi
+			echo "Position of the user is "$position
 		;;
 		$SNAKE)
 			position=$(($position-$randomRoll))
-			echo "Position after Bitting is $position"
+			echo "Position after bitting is "$position
 			if [ $position -lt $STARTPOSITION ]
 			then
 				position=$STARTPOSITION
 			fi
+			if [ $position -lt $WINPOSITION ]
+			then
+				currentPosition=$position
+			fi
+			echo "$position"
 		;;
 	esac
 done
+echo "User win"$position
+
+
