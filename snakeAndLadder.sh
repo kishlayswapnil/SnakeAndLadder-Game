@@ -4,6 +4,7 @@ echo "Welcome To Snake And Ladder Game."
 #Constants Declared.
 STARTPOSITION=0
 WINPOSITION=100
+COUNT=0
 
 #Variables declared.
 position=0
@@ -45,7 +46,10 @@ do
 			echo "$position"
 		;;
 	esac
+	echo " "
+	((COUNT++))
+	echo "Position of a Dice is "$COUNT
 done
 echo "User win"$position
-
+echo "For winning Game $COUNT times dice rolled"
 
